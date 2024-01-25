@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #5F696E;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.introduir-nom {
+    text-align: center;
+    border: solid black 1px;
+    padding: 5px;
+    height: 200px;
+    width: 350px;
+    background-color: #98856B;
+    border-radius: 15px;    
+}
+
+#input-nom {
+    height: 20px;
+    width: 250px;
+    border-radius: 10px;
+}
+
+#comencar {
+    margin-top: 20px;
+    height: 50px;
+    width: 120px;
+    border-radius: 15px;
+    cursor: pointer; 
+    display: inline-block; 
+    text-decoration: none; 
+    color: black;
+    background-color: #e0e0e0;
+    text-align: center;
+    line-height: 50px;
+    border: black solid 1px;
+}
