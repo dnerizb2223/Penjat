@@ -1,13 +1,18 @@
 const words = ["javascript", "html", "css", "python", "typescript"];
 const selectedWord = words[Math.floor(Math.random() * words.length)];
 let guessedWord = Array(selectedWord.length).fill("_");
-let maxWrongAttempts = 6;
+let maxWrongAttempts = 10;
 let wrongAttempts = 0;
 let gameEnded = false;
 
 function updateGameInterface() {
     document.getElementById("word-display").innerText = guessedWord.join(" ");
     document.getElementById("wrong-count").innerText = wrongAttempts;
+
+    if (wrongAttempts >= maxWrongAttempts) {
+        displayMessage("¡Has perdido! La palabra correcta era: " + selectedWord);
+        gameEnded = true;
+    }
 }
 
 function initializeGameInterface() {
@@ -29,11 +34,6 @@ function guessLetter(letter) {
     if (!selectedWord.includes(letter)) {
         wrongAttempts++;
         updateGameInterface();
-
-        if (wrongAttempts >= maxWrongAttempts) {
-            displayMessage("¡Has perdido! La palabra correcta era: " + selectedWord);
-            gameEnded = true;
-        }
     } else {
         for (let i = 0; i < selectedWord.length; i++) {
             if (selectedWord[i] === letter) {
@@ -61,3 +61,9 @@ document.addEventListener("keydown", function (event) {
         guessLetter(event.key);
     }
 });
+
+function saveName() {
+    const playerName = document.getElementById("input-nom").value;
+    localStorage.setItem("playerName", playerName);
+    document.getElementById("player-name").innerText = playerName;
+}

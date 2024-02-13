@@ -38,3 +38,9 @@ body {
     line-height: 50px;
     border: black solid 1px;
 }
+
+.joc{
+    background-color: #98856B;
+    padding: 20px;
+    border-radius: 15px;
+}
