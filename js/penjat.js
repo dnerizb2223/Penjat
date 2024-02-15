@@ -10,7 +10,7 @@ function updateGameInterface() {
     document.getElementById("wrong-count").innerText = wrongAttempts;
 
     if (wrongAttempts >= maxWrongAttempts) {
-        displayMessage("¡Has perdido! La palabra correcta era: " + selectedWord);
+        displayMessage("¡Has perdido! La palabra correcta era: " + selectedWord); 
         gameEnded = true;
     }
 }
