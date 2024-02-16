@@ -1,6 +1,6 @@
 const words = ["javascript", "html", "css", "python", "typescript"];
 const selectedWord = words[Math.floor(Math.random() * words.length)];
-let guessedWord = Array(selectedWord.length).fill("_");
+let guessedWord = Array.from({ length: selectedWord.length }, () => "_");
 let maxWrongAttempts = 10;
 let wrongAttempts = 0;
 let gameEnded = false;
@@ -10,7 +10,7 @@ function updateGameInterface() {
     document.getElementById("wrong-count").innerText = wrongAttempts;
 
     if (wrongAttempts >= maxWrongAttempts) {
-        displayMessage("¡Has perdido! La palabra correcta era: " + selectedWord); 
+        displayMessage("¡Has perdido! La palabra correcta era: " + selectedWord);
         gameEnded = true;
     }
 }

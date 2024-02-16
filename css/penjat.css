@@ -4,7 +4,7 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background-color: #5F696E;
+    background-color: #5e85b8;
     font-family: 'Times New Roman', Times, serif;
 }
 
@@ -19,7 +19,7 @@ body {
 }
 
 #input-nom {
-    height: 20px;
+    height: 20px;   
     width: 250px;
     border-radius: 10px;
 }
@@ -40,7 +40,8 @@ body {
 }
 
 .joc{
-    background-color: #98856B;
+    background-color: #d8a968;
     padding: 20px;
     border-radius: 15px;
+    border: black solid 2px;
 }
