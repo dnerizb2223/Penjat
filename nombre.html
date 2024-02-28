@@ -21,7 +21,13 @@
         </div>
     </div>
 
-    <script src="./js/penjat.js" async defer></script>
-    <script src="./js/nombre.js" async defer></script>
+    <script  async defer>
+        function saveName() {
+    const playerName = document.getElementById("input-nom").value;
+    localStorage.setItem("playerName", playerName);
+    document.getElementById("player-name").innerText = playerName;
+}
+    </script>
+ 
 </body>
 </html>

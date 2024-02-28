@@ -45,3 +45,9 @@ body {
     border-radius: 15px;
     border: black solid 2px;
 }
+
+#image-container img {
+    width: 50px; /* Ancho de la imagen (ajusta según sea necesario) */
+    height: 50px; /* Altura de la imagen (ajusta según sea necesario) */
+    margin-right: 5px; /* Espacio entre imágenes (opcional) */
+}

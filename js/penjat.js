@@ -1,9 +1,35 @@
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+
 const words = ["javascript", "html", "css", "python", "typescript"];
-const selectedWord = words[Math.floor(Math.random() * words.length)];
-let guessedWord = Array.from({ length: selectedWord.length }, () => "_");
-let maxWrongAttempts = 10;
-let wrongAttempts = 0;
-let gameEnded = false;
+const maxWrongAttempts = 10;
+let selectedWord, guessedWord, wrongAttempts,gameEnded;
+
+
+if (localStorage.getItem("selectedWord")== undefined) {
+    // SI ES LA PRIMERA VEGADA
+    selectedWord = words[Math.floor(Math.random() * words.length)];
+    localStorage.setItem("selectedWord", selectedWord);
+    guessedWord = Array.from({ length: selectedWord.length }, () => "_").join(" ");
+    localStorage.setItem("guessedWord", guessedWord);
+    wrongAttempts = 0;
+    localStorage.setItem("wrongAttempts", wrongAttempts);
+    gameEnded = false;
+    localStorage.setItem("gameEnded", gameEnded);
+
+}else{
+    // SI JA ESTAVES JUGANT
+    selectedWord=localStorage.getItem("selectedWord");
+    guessedWord=localStorage.getItem("guessedWord");
+    wrongAttempts=localStorage.getItem("wrongAttempts");
+    gameEnded=localStorage.getItem("gameEnded");
+    document.getElementById("word-display").innerText = guessedWord;
+
+}
+
+
+initializeGameInterface();
 
 function updateGameInterface() {
     document.getElementById("word-display").innerText = guessedWord.join(" ");
@@ -12,11 +38,17 @@ function updateGameInterface() {
     if (wrongAttempts >= maxWrongAttempts) {
         displayMessage("¡Has perdido! La palabra correcta era: " + selectedWord);
         gameEnded = true;
+        localStorage.clear();
     }
 }
 
+function ensenyarNinot() {
+        let img = document.createElement("img");
+        img.src = "./media/1.png"; 
+        document.getElementById("image-container").appendChild(img);
+}
+
 function initializeGameInterface() {
-    // Inicializa la interfaz con espacios en blanco
     document.getElementById("word-display").innerText = guessedWord.join(" ");
 }
 
@@ -26,13 +58,14 @@ function displayMessage(message) {
 
 function guessLetter(letter) {
     if (gameEnded) {
-        return; // No hacer nada si el juego ha terminado
+        return; 
     }
 
     letter = letter.toLowerCase();
 
     if (!selectedWord.includes(letter)) {
         wrongAttempts++;
+        localStorage.setItem("wrongAttempts", wrongAttempts);
         updateGameInterface();
     } else {
         for (let i = 0; i < selectedWord.length; i++) {
@@ -41,29 +74,24 @@ function guessLetter(letter) {
             }
         }
 
+        localStorage.setItem("guessedWord", guessedWord);
+        
         updateGameInterface();
 
-        if (guessedWord.join("") === selectedWord) {
+        if (guessedWord.join(" ") === selectedWord) {
             displayMessage("¡Felicidades! Has adivinado la palabra correctamente.");
             gameEnded = true;
+            localStorage.clear();
         }
     }
 }
 
-// Llama a initializeGameInterface al cargar la página
-document.addEventListener("DOMContentLoaded", initializeGameInterface);
 
-// Escucha el evento de teclado en el documento
+
 document.addEventListener("keydown", function (event) {
-    // Verifica si la tecla presionada es una letra
     if (/^[a-zA-Z]$/.test(event.key)) {
-        // Llama a la función guessLetter con la letra presionada
         guessLetter(event.key);
     }
 });
 
-function saveName() {
-    const playerName = document.getElementById("input-nom").value;
-    localStorage.setItem("playerName", playerName);
-    document.getElementById("player-name").innerText = playerName;
-}
+} );
