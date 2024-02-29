@@ -51,3 +51,31 @@ body {
     height: 50px; /* Altura de la imagen (ajusta según sea necesario) */
     margin-right: 5px; /* Espacio entre imágenes (opcional) */
 }
+
+#keyboard {
+    background-color: #5e85b8!important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    width: 600px;
+    margin-top: 10px;
+    justify-content: center; /* Centra los botones horizontalmente */
+    position: fixed;
+    top: 70%;
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+
+#keyboard button {
+    background-color: #5e85b8;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+
+#keyboard button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/penjat.css">
+    <script src="./js/penjat.js"></script>
 </head>
 <body>
     <div class="joc">
@@ -16,7 +17,35 @@
         <div id="wrong-attempts">Intentos incorrectos: <span id="wrong-count">0</span></div>
         <div id="message"></div>
     </div>  
-    <script src="./js/penjat.js" async defer></script>
- 
+    <div id="keyboard">
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-a" data-letter="a">A</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-b" data-letter="b">B</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-c" data-letter="c">C</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-d" data-letter="d">D</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-e" data-letter="e">E</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-f" data-letter="f">F</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-g" data-letter="g">G</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-h" data-letter="h">H</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-i" data-letter="i">I</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-j" data-letter="j">J</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-k" data-letter="k">K</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-l" data-letter="l">L</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-m" data-letter="m">M</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-n" data-letter="n">N</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-ñ" data-letter="ñ">Ñ</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-o" data-letter="o">O</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-p" data-letter="p">P</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-q" data-letter="q">Q</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-r" data-letter="r">R</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-s" data-letter="s">S</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-t" data-letter="t">T</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-u" data-letter="u">U</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-v" data-letter="v">V</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-w" data-letter="w">W</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-x" data-letter="x">X</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-y" data-letter="y">Y</button>
+        <button onclick="guessLetter(this.dataset.letter)" id="btn-z" data-letter="z">Z</button>
+    </div>
+    
 </body>
 </html>
