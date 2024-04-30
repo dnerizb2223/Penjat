@@ -79,3 +79,30 @@ body {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+#restart-button {
+    background-color: #364bc5; /* Color de fondo */
+    border: none; /* Sin borde */
+    color: white; /* Color del texto */
+    padding: 15px 32px; /* Espaciado interior */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 16px; /* Tamaño de la fuente */
+    cursor: pointer; /* Cambiar cursor al pasar */
+    border-radius: 8px; /* Borde redondeado */
+    transition-duration: 0.4s; /* Duración de la transición */
+    position: absolute; /* Posicionamiento absoluto */
+    top: 20px; /* Alineación vertical arriba */
+    right: 20px; /* Alineación horizontal derecha */
+}
+
+/* Cambiar el color del botón al pasar el cursor sobre él */
+#restart-button:hover {
+    background-color: #0565f7;
+}
+
+#image-container-word img {
+    width: 50px; /* Ancho de la imagen (ajusta según sea necesario) */
+    height: 50px; /* Altura de la imagen (ajusta según sea necesario) */
+    margin-right: 5px; /* Espacio entre imágenes (opcional) */
+}
