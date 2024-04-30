@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let selectedWord, guessedWord, wrongAttempts, usedLetters;
 
     if (localStorage.getItem("selectedWord") == undefined) {
-        // SI ES LA PRIMERA VEZ
         const categoryKeys = Object.keys(categories);
         const randomCategory = categoryKeys[Math.floor(Math.random() * categoryKeys.length)];
         const selectedCategory = categories[randomCategory];
@@ -20,10 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("guessedWord", guessedWord);
         wrongAttempts = 0;
         localStorage.setItem("wrongAttempts", wrongAttempts);
-        usedLetters = []; // Inicializar usedLetters como un array vacío
-        localStorage.setItem("usedLetters", JSON.stringify(usedLetters)); // Guardar en localStorage
+        usedLetters = []; 
+        localStorage.setItem("usedLetters", JSON.stringify(usedLetters)); 
     } else {
-        // SI YA ESTABA JUGANDO
         selectedWord = localStorage.getItem("selectedWord");
         guessedWord = localStorage.getItem("guessedWord").split(",");
         wrongAttempts = localStorage.getItem("wrongAttempts");
@@ -40,19 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (wrongAttempts >= maxWrongAttempts) {
             displayMessage("¡Has perdido! La palabra correcta era: " + selectedWord);
-            endGame(); // Llama a esta función cuando el juego termine
+            endGame(); 
             localStorage.clear();
         }
     }
 
     function ensenyarNinot() {
-        // Eliminar la imagen anterior si existe
         const imageContainer = document.getElementById("image-container");
         while (imageContainer.firstChild) {
             imageContainer.removeChild(imageContainer.firstChild);
         }
     
-        // Crear y agregar la nueva imagen
         const img = document.createElement("img");
         img.src = `../media/${wrongAttempts}.png`;
         imageContainer.appendChild(img);
@@ -79,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("message").innerText = message;
     }
 
-    // Definición de la función guessLetter
 const guessLetter = (letter) => {
     if (gameEnded || usedLetters.includes(letter)) {
         return;
@@ -95,7 +90,6 @@ const guessLetter = (letter) => {
         updateGameInterface();
         ensenyarNinot();
 
-        // Llamar a endGame después de un intento fallido
         if (wrongAttempts >= maxWrongAttempts) {
             endGame();
         }
@@ -112,7 +106,7 @@ const guessLetter = (letter) => {
 
         if (guessedWord.join("") === selectedWord) {
             displayMessage("¡Felicidades! Has adivinado la palabra correctamente.");
-            endGame(); // Llama a esta función cuando el juego termine
+            endGame();
             localStorage.clear();
         } else {
             disableButton(letter);
@@ -122,11 +116,9 @@ const guessLetter = (letter) => {
 
     
 
-    // Definimos la función restartGame fuera del bloque DOMContentLoaded
     function restartGame() {
-        localStorage.clear(); // Limpiar datos del juego almacenados en localStorage
+        localStorage.clear(); 
     
-        // Reiniciar variables y cargar una nueva palabra
         const categoryKeys = Object.keys(categories);
         const randomCategory = categoryKeys[Math.floor(Math.random() * categoryKeys.length)];
         const selectedCategory = categories[randomCategory];
@@ -139,16 +131,13 @@ const guessLetter = (letter) => {
         usedLetters = [];
         localStorage.setItem("usedLetters", JSON.stringify(usedLetters));
     
-        // Actualizar la interfaz del juego
         updateGameInterface();
     
-        // Eliminar la imagen del ahorcado si está presente
         const imageContainer = document.getElementById("image-container");
         while (imageContainer.firstChild) {
             imageContainer.removeChild(imageContainer.firstChild);
         }
     
-        // Habilitar los botones del teclado
         const alphabet = "abcdefghijklmnopqrstuvwxyzçñ";
         for (const letter of alphabet) {
             const button = document.getElementById(`btn-${letter}`);
@@ -157,43 +146,35 @@ const guessLetter = (letter) => {
             }
         }
     
-        // Limpiar mensaje
         displayMessage("");
     
-        // Ocultar el botón de reinicio
         const restartButton = document.getElementById("restart-button");
         restartButton.style.display = "none";
     
-        // Ocultar la información educativa
         const educationalInfo = document.getElementById("educational-info");
         educationalInfo.textContent = "";
     
-        // Habilitar el juego
         gameEnded = false;
     }
     
     
 
-    // Esta función se llama cuando el juego finaliza para mostrar el botón de reinicio
     function endGame() {
         gameEnded = true;
         const restartButton = document.getElementById("restart-button");
         restartButton.style.display = "block";
     
-        // Mostrar imagen relacionada con la palabra
         const imageContainer = document.getElementById("image-container");
         const img = document.createElement("img");
-        img.src = `../media/${selectedWord}.jpg`; // Asumiendo que las imágenes tienen nombres coincidentes con las palabras
+        img.src = `../media/${selectedWord}.jpg`; 
         imageContainer.appendChild(img);
     
-        // Mostrar información educativa relacionada con la palabra
         const educationalInfo = document.getElementById("educational-info");
-        const info = getEducationalInfo(selectedWord.toLowerCase()); // Función para obtener información educativa según la palabra
+        const info = getEducationalInfo(selectedWord.toLowerCase()); 
         educationalInfo.textContent = info;
         
     }
     
-    // Función para obtener información educativa según la palabra
     function getEducationalInfo(word) {
         const educationalInfo = {
             javascript: "JavaScript es un lenguaje de programación de alto nivel, interpretado, orientado a objetos y de tipado dinámico.",
@@ -213,7 +194,6 @@ const guessLetter = (letter) => {
             fresa: "La fresa es el fruto de la planta del género Fragaria."
         };
     
-        // Verificar si hay información educativa disponible para la palabra
         if (educationalInfo.hasOwnProperty(word)) {
             return educationalInfo[word];
         } else {
@@ -222,11 +202,9 @@ const guessLetter = (letter) => {
     }
     
 
-    // Llamada inicial para asegurarse de que el botón de reinicio esté oculto al cargar la página
     const restartButton = document.getElementById("restart-button");
     restartButton.style.display = "none";
     
-    // Event listener para reiniciar el juego al hacer clic en el botón
     restartButton.addEventListener("click", restartGame);
 
     document.addEventListener("keydown", function (event) {
@@ -238,15 +216,14 @@ const guessLetter = (letter) => {
     const alphabet = "abcdefghijklmnopqrstuvwxyzçñ";
     const keyboardContainer = document.getElementById("keyboard");
 
-    // Recorremos el alfabeto para crear y agregar botones al teclado
     for (const letter of alphabet) {
         const button = document.createElement("button");
         button.textContent = letter.toUpperCase();
-        button.dataset.letter = letter; // Establecemos el atributo data-letter
+        button.dataset.letter = letter; 
         button.addEventListener("click", function() {
-            guessLetter(this.dataset.letter); // Llamamos a guessLetter con el valor del atributo data-letter
+            guessLetter(this.dataset.letter); 
         });
-        keyboardContainer.appendChild(button); // Agregamos el botón al contenedor del teclado
+        keyboardContainer.appendChild(button);
     }
 
 });
